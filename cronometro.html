@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Cronômetro</title>
+</head>
+<body>
+    <div id="Cronômetro">
+
+        <h2 id="timer">00:00:00:00</h2>
+
+        <div id="actions">
+            <button id="reset">
+                <i class="fa-solid fa-redo"></i> 
+            </button>
+            <button id="power" action="start">
+                <i class="fa-solid fa-play"></i>
+            </button>
+            <button id="mark">
+                <i class="fa-solid fa-flag"></i>
+            </button>
+        </div>
+
+        <div id="marks-list"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+
+<script>
+    
+    function createStars(numStars) {
+        const starsContainer = document.createElement('div');
+        starsContainer.classList.add('stars');
+        document.body.appendChild(starsContainer);
+
+        for (let i = 0; i < numStars; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 3 + 1; 
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.top = `${Math.random() * 100}vh`; 
+            star.style.left = `${Math.random() * 100}vw`; 
+            star.style.animationDelay = `${Math.random() * 2}s`; 
+            starsContainer.appendChild(star);
+        }
+    }
+
+    function createClouds(numClouds) {
+        for (let i = 0; i < numClouds; i++) {
+            const cloud = document.createElement('div');
+            cloud.classList.add('cloud', 'moving-cloud');
+            const size = Math.random() * 80 + 60; 
+            cloud.style.width = `${size}px`;
+            cloud.style.height = `${size / 1.6}px`;
+            cloud.style.top = `${Math.random() * 30}vh`; 
+            cloud.style.left = `${Math.random() * 100}vw`; 
+            document.body.appendChild(cloud);
+        }
+    }
+
+    
+    window.onload = function() {
+        createStars(100);  
+        createClouds(5);  
+    };
+</script>
+
+</html>
